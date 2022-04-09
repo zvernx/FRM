@@ -21,19 +21,32 @@ os.system('cls')
 
 # simple function used to obatin open, close, or adjusted closing price of
 # equities from yahoo finance
-# takes 4 arguments, portfolio list, start date, end date and price type (open, close, adj close0
+# takes 4 arguments, portfolio list, start date, end date and price type
+# (open, close, adj close）
 
 def price_dl(tickers: list, start_date: str, end_date: str, price_type: str):
     data = pdr.get_data_yahoo(
         tickers,
         start=start_date,
         end=end_date)[price_type]
+    return data
     print(data)
 
-    
+
 def price_dl_all(tickers: list, start_date: str, end_date: str):
+    data = pdr.get_data_yahoo(
+           tickers,
+           start=start_date,
+           end=end_date)
+    return data
+    print(data)
+
+
+def price_dl_csv(tickers: list, start_date: str, end_date: str):
     data = pdr.get_data_yahoo(
         tickers,
         start=start_date,
         end=end_date)
-    print(data)
+    return data
+
+    data.to_csv(price_dl.csv, index=False)
